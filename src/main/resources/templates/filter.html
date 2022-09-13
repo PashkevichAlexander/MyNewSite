@@ -5,15 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>Get your greeting <a th:href="@{/greeting}">here</a></p>
+<p>Get your main <a th:href="@{/main}">here</a></p>
+
 <div>
-
-    <form th:action="@{/main}" method="post" action="main">
-        <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!" /></p>
-        <p>Tag: <input type="text" name="tag" placeholder="Тэг" /></p>
-        <p><input type="submit" value="Submit" />
-    </form>
-
     <form th:action="@{/filter}" method="post" action="filter">
         <p>Filter: <input type="text" name="filter" placeholder="Найти"></p>
         <p><input type="submit" value="Submit"></p>
