@@ -5,14 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>Get your main <a th:href="@{/main}">here</a></p>
-
-<div>
-    <form th:action="@{/filter}" method="post" action="filter">
-        <p>Filter: <input type="text" name="filter" placeholder="Найти"></p>
-        <p><input type="submit" value="Submit"></p>
-    </form>
-</div>
 <h>
     <table>
         <tr>
@@ -27,5 +19,10 @@
         </tr>
     </table>
 </h>
+<div>
+    <form th:action="@{/main}" method="get" >
+        <p><input type="submit" value="Home"></p>
+    </form>
+</div>
 </body>
 </html>

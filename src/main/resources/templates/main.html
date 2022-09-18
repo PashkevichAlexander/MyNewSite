@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>Get your greeting <a th:href="@{/greeting}">here</a></p>
 <div>
+
 
     <form th:action="@{/main}" method="post" action="main">
         <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!" /></p>
@@ -33,5 +33,9 @@
         </tr>
     </table>
 </h>
+<div><form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</div>
 </body>
 </html>

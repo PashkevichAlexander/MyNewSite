@@ -1,6 +1,6 @@
-package com.mysite.MyNewSite.repository;
+package com.mysite.MyNewSite.repositories;
 
-import com.mysite.MyNewSite.domian.Message;
+import com.mysite.MyNewSite.entity.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

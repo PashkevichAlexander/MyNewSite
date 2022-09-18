@@ -1,4 +1,4 @@
-package com.mysite.MyNewSite.domian;
+package com.mysite.MyNewSite.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
