@@ -44,8 +44,6 @@ public class RegistrationController {
         }
         user.setPassword(encoder.encode(user.getPassword()));
         userDTOService.add(user);
-        model.addAttribute("username", user.getUsername());
-
         return "redirect:/login";
     }
 }
