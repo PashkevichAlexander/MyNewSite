@@ -5,7 +5,10 @@ public enum Roles {
 
     ADMIN("ROLE_ADMIN",2),
 
-    EDITOR("ROLE_EDITOR",3);
+    EDITOR("ROLE_EDITOR",3),
+
+    ANONYMOUS("ROLE_ANONYMOUS", -1);
+
 
     private final String name;
     private final int id;

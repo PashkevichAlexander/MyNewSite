@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,14 +37,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@Valid @ModelAttribute("user") UserDTO user, Model model) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDb != null) {
-            model.addAttribute("message", "User exists!");
+    public String addUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult br, Model model) {
+        if (userDTOService.existByUsername(user.getUsername())) br.rejectValue("username", "", "Этот логин уже занят");
+        if (br.hasErrors()) {
             return "registration";
         }
-
         user.setPassword(encoder.encode(user.getPassword()));
         userDTOService.add(user);
         model.addAttribute("username", user.getUsername());

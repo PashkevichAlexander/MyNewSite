@@ -62,11 +62,12 @@ public class WebSecurityConfig {
                 //Public pages
                 .antMatchers("/filter").permitAll()
                 .antMatchers("/greeting").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/registration").hasAnyAuthority(Roles.ANONYMOUS.getName())
                 .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
                 .antMatchers("/main").hasAnyAuthority(Roles.ADMIN.getName())
                 .antMatchers("/main").hasAnyAuthority(Roles.EDITOR.getName())
-                .antMatchers("/registration").permitAll()
+
 
                 //blacklist others
                 //and
