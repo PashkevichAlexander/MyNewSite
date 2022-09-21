@@ -32,7 +32,8 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationForm() {
+    public String showRegistrationForm(ModelMap modelMap) {
+        modelMap.addAttribute("user", userDTOService.create());
         return "registration";
     }
 
@@ -44,6 +45,6 @@ public class RegistrationController {
         }
         user.setPassword(encoder.encode(user.getPassword()));
         userDTOService.add(user);
-        return "redirect:/login";
+        return "registrationSuccess";
     }
 }

@@ -9,23 +9,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class AddController {
+public class FilterByTagController {
+
     @Autowired
     private MessageRepository messageRepository;
 
-    @PostMapping("main")
-    public String add(
-            @RequestParam String text,
-            @RequestParam String tag,
-            Model model){
-        final Message message = new Message(text, tag);
 
-        messageRepository.save(message);
+    @PostMapping("filter")
+    public String filter(
+            @RequestParam String filter,
+            Model model
+    ) {
+        Iterable<Message> messages;
 
-        final Iterable<Message> messages = messageRepository.findAll();
-
+        if (filter != null && filter.isEmpty()) {
+            messages = messageRepository.findByTag(filter);
+        } else {
+            messages = messageRepository.findAll();
+        }
         model.addAttribute("messages", messages);
-
-        return "main";
+        return "filter";
     }
 }

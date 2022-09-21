@@ -60,14 +60,20 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 //add required roles here
                 //Public pages
-                .antMatchers("/filter").permitAll()
-                .antMatchers("/greeting").permitAll()
-                .antMatchers("/login").hasAnyAuthority(Roles.ANONYMOUS.getName())
-                .antMatchers("/registration").hasAnyAuthority(Roles.ANONYMOUS.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.ADMIN.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.EDITOR.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.ADMIN.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.EDITOR.getName())
 
+                .antMatchers("/greeting").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/authorization").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/registration").hasAnyAuthority(Roles.ANONYMOUS.getName())
+
+
+                .antMatchers("/wall").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/wall").hasAnyAuthority(Roles.ADMIN.getName())
+                .antMatchers("/wall").hasAnyAuthority(Roles.EDITOR.getName())
+
+                .antMatchers("/").permitAll()
 
                 //blacklist others
                 //and
@@ -75,7 +81,7 @@ public class WebSecurityConfig {
                 //and
                 .and().logout().permitAll().logoutSuccessUrl("/")
                 //and
-
+                .and().exceptionHandling().accessDeniedPage("/403")
         ;
         return http.build();
     }
