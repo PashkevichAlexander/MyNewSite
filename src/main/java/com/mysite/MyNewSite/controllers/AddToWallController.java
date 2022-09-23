@@ -14,7 +14,7 @@ public class AddToWallController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @PostMapping("wall")
+    @PostMapping("pub")
     public String add(
             @RequestParam String text,
             @RequestParam String tag,

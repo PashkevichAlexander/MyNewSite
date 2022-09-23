@@ -37,7 +37,7 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/registrationProcess")
     public String addUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult br, Model model) {
         if (userDTOService.existByUsername(user.getUsername())) br.rejectValue("username", "", "Этот логин уже занят");
         if (br.hasErrors()) {

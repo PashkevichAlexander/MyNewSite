@@ -11,7 +11,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.ldap.EmbeddedLdapServerContextSourceFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -65,8 +64,12 @@ public class WebSecurityConfig {
                 .antMatchers("/filter").hasAnyAuthority(Roles.EDITOR.getName())
 
                 .antMatchers("/greeting").hasAnyAuthority(Roles.ANONYMOUS.getName())
-                .antMatchers("/authorization").hasAnyAuthority(Roles.ANONYMOUS.getName())
+//                .antMatchers("/authorization").hasAnyAuthority(Roles.ANONYMOUS.getName())
                 .antMatchers("/registration").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/registerSuccess").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/registrationProcess").hasAnyAuthority(Roles.ANONYMOUS.getName())
+                .antMatchers("/authorization").hasAnyAuthority(Roles.ANONYMOUS.getName())
+
 
 
                 .antMatchers("/wall").hasAnyAuthority(Roles.USER.getName())
@@ -77,11 +80,17 @@ public class WebSecurityConfig {
 
                 //blacklist others
                 //and
-                .and().formLogin().defaultSuccessUrl("/").permitAll()
+                .and().formLogin()
+                .loginPage("/authorization")
+                .permitAll()
+                .defaultSuccessUrl("/wall.html", true)
+                .permitAll()
                 //and
                 .and().logout().permitAll().logoutSuccessUrl("/")
                 //and
                 .and().exceptionHandling().accessDeniedPage("/403")
+
+
         ;
         return http.build();
     }
