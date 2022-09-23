@@ -60,18 +60,23 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 //add required roles here
                 //Public pages
-                .antMatchers("/filter").permitAll()
-                .antMatchers("/greeting").permitAll()
-                .antMatchers("/login").hasAnyAuthority(Roles.ANONYMOUS.getName())
-                .antMatchers("/registration").hasAnyAuthority(Roles.ANONYMOUS.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.ADMIN.getName())
-                .antMatchers("/main").hasAnyAuthority(Roles.EDITOR.getName())
 
+                .antMatchers("/greeting").anonymous()
+                .antMatchers("/login").anonymous()
+                .antMatchers("/registration").anonymous()
+
+                .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.ADMIN.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.EDITOR.getName())
 
                 //blacklist others
                 //and
-                .and().formLogin().defaultSuccessUrl("/").permitAll()
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/main")
+                    .permitAll()
                 //and
                 .and().logout().permitAll().logoutSuccessUrl("/")
                 //and

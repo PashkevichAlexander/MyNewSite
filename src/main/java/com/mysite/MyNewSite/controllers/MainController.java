@@ -15,7 +15,7 @@ public class MainController {
     @GetMapping("/main")
     public String main( Model model) {
         final Iterable<Message> messages = messageRepository.findAll();
-        model.addAttribute("Messages11", messages);
+        model.addAttribute("messages", messages);
         return "main";
     }
 
