@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                 .antMatchers("/login").anonymous()
                 .antMatchers("/registration").anonymous()
 
-                .antMatchers("/main").permitAll()
+                .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
                 .antMatchers("/filter").hasAnyAuthority(Roles.USER.getName())
                 .antMatchers("/filter").hasAnyAuthority(Roles.ADMIN.getName())
                 .antMatchers("/filter").hasAnyAuthority(Roles.EDITOR.getName())
