@@ -1,13 +1,12 @@
 package com.mysite.MyNewSite.domian;
 
 public enum Roles {
-    USER("ROLE_USER",1),
+    USER("ROLE_USER",2),
 
-    ADMIN("ROLE_ADMIN",2),
+    ADMIN("ROLE_ADMIN",1),
 
-    EDITOR("ROLE_EDITOR",3),
+    EDITOR("ROLE_EDITOR",3);
 
-    ANONYMOUS("ROLE_ANONYMOUS", -1);
 
 
     private final String name;
