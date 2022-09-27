@@ -31,6 +31,14 @@ public class User implements UserDetails {
     private Set<Role> roles = new HashSet<>();
 
 
+    public User(){}
+
+    public User(String username,String password){
+        this.username = username;
+        this.password = password;
+    }
+
+
     public int getId() {
         return id;
     }
