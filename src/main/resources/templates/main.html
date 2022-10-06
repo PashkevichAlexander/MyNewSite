@@ -11,7 +11,7 @@
     <form th:action="@{/main}" method="post" action="main">
         <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!" /></p>
         <p>Tag: <input type="text" name="tag" placeholder="Тэг" /></p>
-        <p><input type="submit" value="Submit" />
+        <p><input type="submit" value="add" />
     </form>
 
     <form th:action="@{/filter}" method="post" action="filter">
@@ -25,11 +25,13 @@
             <th>id</th>
             <th>text</th>
             <th>tag</th>
+            <th>userName</th>
         </tr>
         <tr th:each="message : ${messages}">
             <td th:text="${message.id}">a</td>
             <td th:text="${message.text}">a</td>
             <td th:text="${message.tag}">a</td>
+            <td th:text="${message.userName}">a</td>
         </tr>
     </table>
 </h>

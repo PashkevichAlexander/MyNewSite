@@ -15,7 +15,7 @@ public class FilterController {
     private MessageRepository messageRepository;
 
 
-    @PostMapping("filter")
+    @PostMapping("/filter")
     public String filter(@RequestParam String filter,
                          Model model){
         Iterable<Message> messages;
