@@ -31,6 +31,8 @@ public class UserDTOConverter {
         User user = new User();
         user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
+        user.setFirstName(userDTO.getFirstname());
+        user.setLastName(userDTO.getLastname());
         if (userDTO.getPassword().length() < 35) userDTO.setPassword(encoder.encode(userDTO.getPassword()));
         user.setPassword(userDTO.getPassword());
         if (userDTO.isRoleEditor()) {
