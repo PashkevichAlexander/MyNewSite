@@ -18,6 +18,6 @@ public class dataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args) {
-        userRepository.save(new User("user1","12345"));
+        userRepository.save(new User("user1","$2a$10$2Xohn4ngjeN6m3AD0ujzxuBnOz7xYCwI1MkhAm/h9B/J/rwiTcN..","bob","tester"));
     }
 }
