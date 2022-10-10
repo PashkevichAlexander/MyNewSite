@@ -60,16 +60,16 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 //add required roles here
                 //Public pages
+                .antMatchers("/error").permitAll()
 
                 .antMatchers("/greeting").anonymous()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/registration").anonymous()
+                .antMatchers("/main").permitAll()
 
-                .antMatchers("/main").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/addMessage").hasAnyAuthority(Roles.USER.getName())
+
                 .antMatchers("/filter").hasAnyAuthority(Roles.USER.getName())
-                .antMatchers("/filter").hasAnyAuthority(Roles.ADMIN.getName())
-                .antMatchers("/filter").hasAnyAuthority(Roles.EDITOR.getName())
-
                 //blacklist others
                 //and
                 .and()
@@ -79,7 +79,9 @@ public class WebSecurityConfig {
                     .permitAll()
                 //and
                 .and().logout().permitAll().logoutSuccessUrl("/")
-                //and
+                .and().exceptionHandling().accessDeniedPage("/403")
+
+        //and
 
         ;
         return http.build();

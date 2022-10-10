@@ -8,15 +8,15 @@
 <div>
 
 
-    <form th:action="@{/main}" method="post" action="main">
-        <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!" /></p>
-        <p>Tag: <input type="text" name="tag" placeholder="Тэг" /></p>
-        <p><input type="submit" value="add" />
+    <form th:action="@{/addMessage}" method="post" >
+        <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!"/></p>
+        <p>Tag: <input type="text" name="tag" placeholder="Тэг"/></p>
+        <p><input type="submit" value="add"/>
     </form>
 
-    <form th:action="@{/filter}" method="post" action="filter">
+    <form th:action="@{/filter}" method="post">
         <p>Filter: <input type="text" name="filter" placeholder="Найти"></p>
-        <p><input type="submit" value="Submit"></p>
+        <p><input type="submit" value="find"></p>
     </form>
 </div>
 <h>
@@ -35,9 +35,11 @@
         </tr>
     </table>
 </h>
-<div><form th:action="@{/logout}" method="post">
-    <input type="submit" value="logout"/>
-</form>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="logout"/>
+    </form>
 </div>
+
 </body>
 </html>

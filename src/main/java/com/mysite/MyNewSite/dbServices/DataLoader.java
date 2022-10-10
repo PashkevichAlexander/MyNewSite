@@ -8,12 +8,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class dataLoader implements ApplicationRunner {
+public class DataLoader implements ApplicationRunner {
 
     private UserRepository userRepository;
 
     @Autowired
-    public dataLoader(UserRepository userRepository) {
+    public DataLoader(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

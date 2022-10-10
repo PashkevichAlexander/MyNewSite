@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class AddController {
+public class AddMessageController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @PostMapping("main")
+    @PostMapping("/addMessage")
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String text,
