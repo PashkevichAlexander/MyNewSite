@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Main</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -38,6 +38,12 @@
 <div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="logout"/>
+    </form>
+</div>
+
+<div>
+    <form th:action="@{/userPage}" method="get">
+        <input type="submit" value="userPage"/>
     </form>
 </div>
 
