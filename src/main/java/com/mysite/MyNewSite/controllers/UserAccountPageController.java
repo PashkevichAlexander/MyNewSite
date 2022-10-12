@@ -7,12 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserPageController {
+public class UserAccountPageController {
 
-    @GetMapping("/userPage")
+    @GetMapping("/userAccountPage")
     public String userPage(@AuthenticationPrincipal User user,
                            Model model){
         model.addAttribute("user", user);
-        return "userPage";
+        return "userAccountPage";
     }
 }

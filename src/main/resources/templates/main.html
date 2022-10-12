@@ -8,7 +8,7 @@
 <div>
 
 
-    <form th:action="@{/addMessage}" method="post" >
+    <form th:action="@{/addMessage}" method="post">
         <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!"/></p>
         <p>Tag: <input type="text" name="tag" placeholder="Тэг"/></p>
         <p><input type="submit" value="add"/>
@@ -26,12 +26,18 @@
             <th>text</th>
             <th>tag</th>
             <th>userName</th>
+            <th></th>
         </tr>
         <tr th:each="message : ${messages}">
             <td th:text="${message.id}">a</td>
             <td th:text="${message.text}">a</td>
             <td th:text="${message.tag}">a</td>
             <td th:text="${message.userName}">a</td>
+            <td>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="logout"/>
+                </form>
+            </td>
         </tr>
     </table>
 </h>
@@ -42,7 +48,7 @@
 </div>
 
 <div>
-    <form th:action="@{/userPage}" method="get">
+    <form th:action="@{/userAccountPage}" method="get">
         <input type="submit" value="userPage"/>
     </form>
 </div>
