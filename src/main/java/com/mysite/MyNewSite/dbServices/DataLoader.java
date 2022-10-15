@@ -8,24 +8,28 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 @Component
 public class DataLoader implements ApplicationRunner {
-
-    private final BCryptPasswordEncoder encoder;
-    private UserRepository userRepository;
-    private String adminPassword1 = "123456789";
-    private String adminPassword2 = "987654321";
-    private String userPassword1 = "123456789";
-    private String userPassword2 = "987654321";
-
-    @Autowired
-    public DataLoader(BCryptPasswordEncoder encoder, UserRepository userRepository) {
-        this.encoder = encoder;
-        this.userRepository = userRepository;
-    }
-
     public void run(ApplicationArguments args) {
-        userRepository.save(new User("Admin1","$2a$10$2Xohn4ngjeN6m3AD0ujzxuBnOz7xYCwI1MkhAm/h9B/J/rwiTcN..","Admin1bob","Admin1tester"));
-        userRepository.save(new User("Admin2","$2a$10$2Xohn4ngjeN6m3AD0ujzxuBnOz7xYCwI1MkhAm/h9B/J/rwiTcN..","Admin1bob","Admin2tester"));
+        try {
+            String url = "jdbc:mysql://localhost:3306/springboottest";
+            String username = "root";
+            String password = "12345";
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+
+            try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+                Statement statement = conn.createStatement();
+                statement.executeUpdate("INSERT INTO users_roles(user_id, role_id) VALUES (1, 1)");
+            }
+        } catch (Exception ex) {
+            System.out.println("Connection failed...");
+            System.out.println(ex);
+        }
     }
+
 }
