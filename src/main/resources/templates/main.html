@@ -34,8 +34,9 @@
             <td th:text="${message.tag}">a</td>
             <td th:text="${message.userName}">a</td>
             <td>
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="logout"/>
+                <form th:action="@{/deleteMessage}" method="post">
+                    <input type="hidden" th:value="${message.id}" name="id">
+                    <input type="submit" value="delete"/>
                 </form>
             </td>
         </tr>
