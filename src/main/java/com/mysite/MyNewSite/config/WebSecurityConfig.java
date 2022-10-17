@@ -68,10 +68,13 @@ public class WebSecurityConfig {
                 .antMatchers("/main").permitAll()
 
                 .antMatchers("/addMessage").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/addMessage").hasAnyAuthority(Roles.ADMIN.getName())
 
                 .antMatchers("/userAccountPage").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/userAccountPage").hasAnyAuthority(Roles.ADMIN.getName())
 
                 .antMatchers("/filter").hasAnyAuthority(Roles.USER.getName())
+                .antMatchers("/filter").hasAnyAuthority(Roles.ADMIN.getName())
                 //blacklist others
                 //and
                 .and()
