@@ -4,6 +4,8 @@ package com.mysite.MyNewSite.dbServices;
 import com.mysite.MyNewSite.domian.Roles;
 import com.mysite.MyNewSite.entity.Role;
 import com.mysite.MyNewSite.repositories.RoleRepository;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -14,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component
-public class Initializer {
+public class Initializer implements ApplicationRunner {
 
     private final RoleRepository roleRepository;
 
@@ -23,8 +25,7 @@ public class Initializer {
     }
 
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void setUpRoles() {
+    public void run(ApplicationArguments args) {
         System.out.println("hello world, I have just started up");
         List<Roles> rolesList = new ArrayList<>(Arrays
                 .stream(Roles.values()).filter(v -> v.getId() >0).sorted(Comparator.comparingInt(Roles::getId))
