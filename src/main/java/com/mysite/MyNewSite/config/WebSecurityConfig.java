@@ -53,6 +53,12 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        String[] staticResources  =  {
+                "/css/**",
+                "/img/**",
+                "/fonts/**",
+                "/scripts/**",
+        };
         http
                 //Some magic stuff
                 .csrf().disable()
