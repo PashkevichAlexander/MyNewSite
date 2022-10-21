@@ -8,9 +8,10 @@
 <div>
 
 
-    <form th:action="@{/addMessage}" method="post">
-        <p>Message:<input type="text" name="text" placeholder="Ведите сообщение!"/></p>
+    <form th:action="@{/addMessage}" method="post" enctype="multipart/form-data">
+        <p>Message: <input type="text" name="text" placeholder="Ведите сообщение!"/></p>
         <p>Tag: <input type="text" name="tag" placeholder="Тэг"/></p>
+        <p>File: <input type="file" name="file"></p>
         <p><input type="submit" value="add"/>
     </form>
 
@@ -26,19 +27,29 @@
             <th>text</th>
             <th>tag</th>
             <th>userName</th>
-            <th></th>
+            <th>image</th>
+            <td></td>
         </tr>
+
         <tr th:each="message : ${messages}">
             <td th:text="${message.id}">a</td>
             <td th:text="${message.text}">a</td>
             <td th:text="${message.tag}">a</td>
             <td th:text="${message.userName}">a</td>
+<!--            <td class="img-container" th:if="${message.image}">-->
+<!--                <img th:src="@{/image.png}"/>-->
+<!--            </td>-->
+
+            <div>
+                <img src="/resources/statics/P13.jpeg"secir/>
+            </div>
             <td>
                 <form th:action="@{/deleteMessage}" method="post">
                     <input type="hidden" th:value="${message.id}" name="id">
                     <input type="submit" value="delete"/>
                 </form>
             </td>
+
         </tr>
     </table>
 </h>
