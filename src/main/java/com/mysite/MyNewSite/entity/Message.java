@@ -37,6 +37,10 @@ public class Message {
     @Setter
     private String userName;
 
+    @Getter
+    @Setter
+    private String filename;
+
     public Message(String text, String tag, String userName) {
         this.text = text;
         this.tag = tag;
