@@ -36,13 +36,9 @@
             <td th:text="${message.text}">a</td>
             <td th:text="${message.tag}">a</td>
             <td th:text="${message.userName}">a</td>
-<!--            <td class="img-container" th:if="${message.image}">-->
-<!--                <img th:src="@{/image.png}"/>-->
-<!--            </td>-->
-
-            <div>
-                <img src="/resources/statics/P13.jpeg"secir/>
-            </div>
+            <td th:if="${message.filename != null}">
+                    <img th:src="@{/img/{filename}(filename = ${message.filename})}">
+            </td>
             <td>
                 <form th:action="@{/deleteMessage}" method="post">
                     <input type="hidden" th:value="${message.id}" name="id">
