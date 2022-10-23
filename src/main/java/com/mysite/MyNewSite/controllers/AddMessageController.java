@@ -21,34 +21,34 @@ public class AddMessageController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @Value("$upload.path")
+    @Value("${upload.path}")
     private String uploadPath;
 
     @PostMapping("/addMessage")
     public String add(
             @AuthenticationPrincipal User user,
-
             @RequestParam String text,
             @RequestParam String tag,
-            @RequestParam("file") MultipartFile file,
-            Model model
+            Model model,
+            @RequestParam("file") MultipartFile file
     ) throws IOException {
+        Message message = new Message(text, tag, user.getUsername());
 
-        final Message message = new Message(text, tag, user.getUsername());
 
-        if (file != null) {
-            final File uploaderDirectory = new File(uploadPath);
-            if (!uploaderDirectory.exists()) {
-                uploaderDirectory.mkdir();
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
             }
-            final String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
 
-            file.transferTo(new File(resultFileName));
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
 
-            message.setFilename(resultFileName);
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            message.setFilename(resultFilename);
         }
-
 
         messageRepository.save(message);
 
@@ -56,6 +56,6 @@ public class AddMessageController {
 
         model.addAttribute("messages", messages);
 
-        return "main";
+        return "redirect:/main";
     }
 }
