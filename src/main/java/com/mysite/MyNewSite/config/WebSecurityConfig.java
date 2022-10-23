@@ -11,7 +11,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.ldap.EmbeddedLdapServerContextSourceFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -53,12 +52,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        String[] staticResources  =  {
-                "/css/**",
-                "/img/**",
-                "/fonts/**",
-                "/scripts/**",
-        };
+
         http
                 //Some magic stuff
                 .csrf().disable()
@@ -84,10 +78,10 @@ public class WebSecurityConfig {
                 //blacklist others
                 //and
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/main")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/main")
+                .permitAll()
                 //and
                 .and().logout().permitAll().logoutSuccessUrl("/")
                 .and().exceptionHandling().accessDeniedPage("/403")
